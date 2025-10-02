@@ -1,0 +1,17 @@
+.detail {
+    color: green;
+    size: 12px;
+    font-size: Arial;
+}
+
+div {
+    border: solid red 1px;
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.ex6 p {
+    color: blue;
+    font-size: 1.2em;
+}

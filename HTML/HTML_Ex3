@@ -1,0 +1,65 @@
+<doctype html>
+<html>
+    <head>
+        <meta http-equivs="Content-Type" content="text/html; charset=UTF-8">
+        <title>School Webpage</title>
+        <style>
+            h1 {
+                background-color: darkblue;
+                color: white;
+                height: 10%;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+            p {
+                display: inline-block;
+                width: 100px;
+            }
+
+            div {
+                display: inline-block;
+            }
+
+            .buttons {
+                margin-right: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>School of Computer Science & Engineering</h1>
+        <h2>Register Form</h2>
+        <form>
+            <p>Full Name</p> <input type="text" name="FullName" value="name"> <br>
+
+            <p>ID</p> <input type="text" name="ID" value="id"> <br>
+
+            <p>Email</p> <input type="text" name="email" value="email"> <br>
+
+            <p>Gender</p>
+                <input type="radio" name="gender" value="Male">Male
+                <input type="radio" name="gender" value="Female">Female <br>
+
+            <p>Field of study</p>
+                <select name="field" size="2" multiple>
+                    <option value="CS">CS</option>
+                    <option value="Engineering">Engineering</option>
+                </select> <br>
+
+            <p> List of subjects</p>
+            <div>
+                <input type="checkbox" name="subject" value="Digital Logic Design">Digital Logic Design <br>
+                <input type="checkbox" name="subject" value="DLD Lab">DLD Lab <br>
+                <input type="checkbox" name="subject" value="Physics 3">Physics 3 <br>
+                <input type="checkbox" name="subject" value="Computer Architecture">Computer Architecture <br>
+                <input type="checkbox" name="subject" value="Object Oriented Programming">Object Oriented Programming
+            </div> <br>
+            
+            <p>Comments</p>
+                <textarea name="Comments" rows="10" cols="50"></textarea> <br>
+                
+            <input class="buttons" type="submit" value="Submit">
+            <input class="buttons" type="reset" value="Cancle">
+        </form>
+    </body>
+</html>
