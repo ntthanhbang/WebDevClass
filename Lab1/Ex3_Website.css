@@ -1,0 +1,21 @@
+html {
+    background-color: lightsalmon;
+}
+
+body {
+    font-szie: 100px;
+    color: black;
+}
+
+blockquote {
+    background-color: lightblue;
+}
+
+#iulogo {
+    width: 50px;
+    height: 50px;
+}
+
+#link:hover {
+    color: palevioletred;
+}

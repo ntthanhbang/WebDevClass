@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Custom Properties</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+			 	font-size: 87.5%;
+			    margin-left: 2em;
+			}
+			section {
+				--color-2: #f2972e;
+			}
+			section h1 {
+				color: var(--color-2);
+			}
+			nav {
+				margin-bottom: 2em;
+				margin: 0;
+			}
+			nav ul {
+				list-style: none;
+				padding-left: 0;
+			}
+			nav ul li {
+				float: left;
+			}
+			section nav ul li a {
+				text-align: center;
+				display: block;
+				width: 175px;
+				padding: 1em 0;
+				text-decoration: none;
+				background-color: var(--color-2);
+				color: white;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<h1>San Joaquin Valley Town Hall</h1>
+		</header>
+		<main>
+			<section>
+				<h1>This season's guest speakers</h1>
+				<nav>
+					<ul>
+						<li><a href="index.html" >Home</a></li>
+						<li><a href="tickets.html" >Get Tickets</a></li> 
+						<li><a href="members.html">Become a Member</a></li> 
+						<li><a href="about_us.html" >About Us</a></li>
+					</ul>
+				</nav>
+			</section>
+		</main>    
+	</body>
+</html>

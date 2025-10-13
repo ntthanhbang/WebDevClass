@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Exercise 2</title>
+
+        <style>
+            body {
+                background-color: pink;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                width: 80%;
+                border: solid palevioletred;
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .header, .footer {
+                flex: 1;
+                height: 100px;
+                padding: 30px;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: row;
+                flex: 1;
+                border-bottom: solid palevioletred;
+                border-top: solid palevioletred;
+            }
+            
+            .maincontent {
+                flex: 2;
+                border-right: solid palevioletred;
+                border-left: solid palevioletred; 
+                padding: 30px;
+            }
+
+            .sidebarA, .sidebarB {
+                flex: 1;
+                height: 180px;
+                padding: 30px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <div class="header">Header</div>
+        
+            <div class="content">
+                <div class="sidebarA">Sidebar A</div>
+                <div class="maincontent">Main content</div>
+                <div class="sidebarB">Sidebar B</div>
+            </div>
+
+            <div class="footer">Footer</div>
+        </main>
+    </body>
+</html>

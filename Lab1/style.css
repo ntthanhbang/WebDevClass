@@ -1,0 +1,27 @@
+html {
+    background-color: black;
+    color: white;
+    margin-left: 80px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: lightcoral;
+}
+
+h2 {
+    color: lightblue;
+    margin-top: 40px;
+}
+
+.date {
+    font-size: 0.8rem;
+}
+
+p {
+    margin-top: 0px;
+}
+
+a {
+    color: lightpink;
+}
