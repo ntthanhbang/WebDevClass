@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header img {
+    height: 100px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    
+}
+
+.sidebar {
+    flex: 0.5;
+}
+
+.sidebar img {
+    width: 100px;
+    height: auto;
+}
+
+.maincontent {
+    flex: 2;
+}
+
+.maincontent img {
+    height: 200px;
+    flex: 1;
+}

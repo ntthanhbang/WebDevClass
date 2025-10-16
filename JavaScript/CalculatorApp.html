@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quadratic Equation Solver</title>
+        <style>
+            table {
+                border: solid;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form name="calculator">
+            <table class="outer-table">
+                <caption>
+                    Quadratic Equation
+                </caption>
+                <tr>
+                    <th colspan="2">Quadratic Equation:<br>Ax² + Bx + C = 0</th>   
+                </tr>
+
+                <tr>
+                    <td>
+                        <table class="input">
+                            <tr>
+                                <th scope="row">A = </th>
+                                <td><input type="text" name="a"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">B = </th>
+                                <td><input type="text" name="b"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">C = </th>
+                                <td><input type="text" name="c"></td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <td>
+                        <table class="output">
+                            <tr>
+                                <td colspan="2" style="text-align:center;">
+                                <input type="button" value="Compute" onclick="computeRoots()"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">X1 = </th>
+                                <td><input type="text" name="x1" readonly></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">X2 = </th>
+                                <td><input type="text" name="x2" readonly></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <script type="text/javascript">
+            function isInt(value) {
+                var num = parseInt(value);
+                return !isNaN(num) && Number(value) == num;
+            }
+
+            function computeRoots() {
+                var form = document.calculator;
+                var a = form.a.value;
+                var b = form.b.value;
+                var c = form.c.value;
+
+                if (!isInt(a) || !isInt(b) || !isInt(c)) {
+                    alert("Please enter integer values for A, B, and C.");
+                    return;
+                }
+
+                a = parseFloat(a);
+                b = parseFloat(b);
+                c = parseFloat(c);
+
+                if (a === 0) {
+                    alert("A cannot be 0. This is not a quadratic equation.");
+                    return;
+                }
+
+                var delta = b * b - 4 * a * c;
+
+                if (delta < 0) {
+                    form.x1.value = "No real roots";
+                    form.x2.value = "No real roots";
+                }
+                else
+                {
+                    var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    form.x1.value = x1.toFixed(2);
+                    form.x2.value = x2.toFixed(2);
+                }
+            }
+        </script>
+    </body>
+</html>
