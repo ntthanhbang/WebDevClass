@@ -236,6 +236,10 @@
                 <a href="student?action=search" class="action-btn action-btn-warning">
                     🔍 Search Students
                 </a>
+
+                <a href="change-password" class="action-btn action-btn-warning">
+                    🔑 Change Password
+                </a>
             </div>
         </div>
     </div>

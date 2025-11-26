@@ -224,7 +224,7 @@
     </style>
 </head>
 <body>
-<!-- Navigation Bar -->
+    <!-- Navigation Bar -->
     <div class="navbar">
         <h2>📚 Student Management System</h2>
         <div class="navbar-right">
@@ -238,18 +238,101 @@
             <a href="logout" class="btn-logout">Logout</a>
         </div>
     </div>
-    
-    <div class="container">
-        <h1>📚 Student List</h1>
-        
+
+<div class="container">
+    <h1>📚 Student List</h1>
+
+    <!-- Success / Error Messages -->
+    <c:if test="${not empty param.message}">
+        <div class="message success">
+            ✅ ${param.message}
+        </div>
+    </c:if>
+
+    <c:if test="${not empty param.error}">
+        <div class="message error">
+            ❌ ${param.error}
+        </div>
+    </c:if>
+
+    <!-- Toolbar: Search, Filter, Add New -->
+    <div class="toolbar">
+
+        <!-- Search box  -->
+        <div class="search-box">
+            <form action="student" method="get">
+                <input type="hidden" name="action" value="search">
+                <input type="text"
+                       name="keyword"
+                       class="search-input"
+                       placeholder="🔍 Search by code, name, or email"
+                       value="${keyword}">
+                <button type="submit" class="btn btn-secondary">Search</button>
+                <c:if test="${not empty keyword}">
+                    <a href="student?action=list" class="btn btn-secondary">Clear</a>
+                </c:if>
+            </form>
+        </div>
+
+        <!-- Filter by major -->
+        <div class="filter-box">
+            <form action="student" method="get">
+                <input type="hidden" name="action" value="filter">
+                <label for="filterMajor">Filter by Major:</label>
+                <select id="filterMajor" name="major" class="filter-select">
+                    <option value="">All Majors</option>
+                    <option value="Computer Science"
+                        ${selectedMajor == 'Computer Science' ? 'selected' : ''}>
+                        Computer Science
+                    </option>
+                    <option value="Information Technology"
+                        ${selectedMajor == 'Information Technology' ? 'selected' : ''}>
+                        Information Technology
+                    </option>
+                    <option value="Software Engineering"
+                        ${selectedMajor == 'Software Engineering' ? 'selected' : ''}>
+                        Software Engineering
+                    </option>
+                    <option value="Business Administration"
+                        ${selectedMajor == 'Business Administration' ? 'selected' : ''}>
+                        Business Administration
+                    </option>
+                </select>
+                <button type="submit" class="btn btn-secondary">Apply</button>
+                <c:if test="${not empty selectedMajor}">
+                    <a href="student?action=list" class="btn btn-secondary">Clear Filter</a>
+                </c:if>
+            </form>
+        </div>
+
         <!-- Add button - Admin only -->
         <c:if test="${sessionScope.role eq 'admin'}">
             <div style="margin: 20px 0;">
                 <a href="student?action=new" class="btn-add">➕ Add New Student</a>
             </div>
         </c:if>
-        
-        <!-- Student Table -->
+    </div>
+
+    <!-- State messages: search / filter / sort -->
+    <c:if test="${not empty keyword}">
+        <p class="subtitle">Search results for: <strong>${keyword}</strong></p>
+    </c:if>
+
+    <c:if test="${not empty selectedMajor}">
+        <p class="subtitle">Filtered by major: <strong>${selectedMajor}</strong></p>
+    </c:if>
+
+    <c:if test="${not empty sortBy}">
+        <p class="subtitle">
+            Sorted by: <strong>${sortBy}</strong>
+            <c:choose>
+                <c:when test="${order == 'desc'}">(descending)</c:when>
+                <c:otherwise>(ascending)</c:otherwise>
+            </c:choose>
+        </p>
+    </c:if>
+
+    <!-- Student Table -->
         <table>
             <thead>
                 <tr>
@@ -294,6 +377,36 @@
                 </c:if>
             </tbody>
         </table>
-    </div>
+
+    <!-- Pagination -->
+    <c:if test="${not empty totalPages and totalPages > 1}">
+        <div class="pagination">
+            <!-- Previous -->
+            <c:if test="${currentPage > 1}">
+                <a href="student?action=list&page=${currentPage - 1}">« Previous</a>
+            </c:if>
+
+            <!-- Page numbers -->
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:choose>
+                    <c:when test="${i == currentPage}">
+                        <span class="active-page">${i}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="student?action=list&page=${i}">${i}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <!-- Next -->
+            <c:if test="${currentPage < totalPages}">
+                <a href="student?action=list&page=${currentPage + 1}">Next »</a>
+            </c:if>
+        </div>
+        <p class="page-info">
+            Showing page ${currentPage} of ${totalPages}
+        </p>
+    </c:if>
+</div>
 </body>
 </html>

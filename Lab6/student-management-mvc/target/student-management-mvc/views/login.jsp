@@ -188,7 +188,7 @@
             
             <div class="remember-me">
                 <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember me</label>
+                <label for="remember">Remember me for 30 days</label>
             </div>
             
             <button type="submit" class="btn-login">Login</button>

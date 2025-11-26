@@ -1,3 +1,4 @@
+D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\controller\ChangePasswordController.java
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\controller\StudentController.java
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\controller\LogoutController.java
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\dao\UserDAO.java
@@ -8,3 +9,4 @@ D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\controller\Das
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\filter\AuthFilter.java
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\dao\StudentDAO.java
 D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\model\User.java
+D:\Projects\WebDevClass\Lab6\student-management-mvc\src\main\java\util\CookieUtil.java
