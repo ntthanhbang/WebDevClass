@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .card { background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); margin-bottom:12px;}
+    </style>
+</head>
+<body>
+    <h1>📊 Dashboard</h1>
+
+    <div class="card">
+        <h3>Total Inventory Value</h3>
+        <p th:text="${totalValue != null ? '$' + #numbers.formatDecimal(totalValue,1,2) : 'N/A'}">N/A</p>
+    </div>
+
+    <div class="card">
+        <h3>Average Price</h3>
+        <p th:text="${avgPrice != null ? '$' + #numbers.formatDecimal(avgPrice,1,2) : 'N/A'}">N/A</p>
+    </div>
+
+    <div class="card">
+        <h3>Products by Category</h3>
+        <ul>
+            <li th:each="entry : ${countsByCategory}">
+                <span th:text="${entry.key}">Category</span> : <strong th:text="${entry.value}">0</strong>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>Low Stock (threshold = 5)</h3>
+        <div th:if="${lowStock != null and !lowStock.isEmpty()}">
+            <ul>
+                <li th:each="p : ${lowStock}">
+                    <span th:text="${p.name}">Product</span> — qty: <span th:text="${p.quantity}">0</span>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${lowStock == null or lowStock.isEmpty()}">
+            <p>No low-stock products.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-header" style="margin-bottom: 20px;">
+        <a th:href="@{/products}" class="btn btn-primary">← Back to Product List</a>
+    </div>
+
+</body>
+</html>

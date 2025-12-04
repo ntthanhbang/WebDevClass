@@ -1,11 +1,14 @@
 package com.example.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.entity.Product;
 import com.example.repository.ProductRepository;
@@ -43,12 +46,37 @@ public class ProductServiceImpl implements ProductService {
     }
     
     @Override
-    public List<Product> searchProducts(String keyword) {
-        return productRepository.findByNameContaining(keyword);
-    }
-    
-    @Override
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategory(category);
+    }
+
+    @Override
+    public long countByCategory(String category) {
+        return productRepository.countByCategory(category);
+    }
+
+    @Override
+    public BigDecimal calculateTotalValue() {
+        return productRepository.calculateTotalValue();
+    }
+
+    @Override
+    public BigDecimal calculateAveragePrice() {
+        return productRepository.calculateAveragePrice();
+    }
+
+    @Override
+    public List<Product> findLowStockProducts(int threshold) {
+        return productRepository.findLowStockProducts(threshold);
+    }
+
+    @Override
+    public List<String> getAllCategories() {
+        return productRepository.findAllCategories();
+    }
+
+    @Override
+    public Page<Product> searchProducts(String keyword, Pageable pageable) {
+        return productRepository.findByNameContaining(keyword, pageable);
     }
 }

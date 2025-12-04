@@ -160,6 +160,8 @@
                 <input type="text" name="keyword" th:value="${keyword}" placeholder="Search products..." />
                 <button type="submit" class="btn btn-primary">🔍 Search</button>
             </form>
+
+            <a th:href="@{/dashboard}" class="btn btn-success">📊 Dashboard</a>
         </div>
         
         <!-- Products Table -->
@@ -197,6 +199,16 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div th:if="${totalPages > 1}" class="pagination" style="margin-top:20px; text-align:center;">
+            <a th:if="${currentPage > 0}" 
+            th:href="@{/products/search(keyword=${keyword}, page=${currentPage-1})}" class="btn btn-sm btn-primary">« Prev</a>
+            
+            <span> Page <span th:text="${currentPage + 1}"></span> of <span th:text="${totalPages}"></span> </span>
+            
+            <a th:if="${currentPage < totalPages - 1}" 
+            th:href="@{/products/search(keyword=${keyword}, page=${currentPage+1})}" class="btn btn-sm btn-primary">Next »</a>
         </div>
         
         <!-- Empty State -->
