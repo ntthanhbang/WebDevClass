@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.customer_api.dto.CustomerRequestDTO;
 import com.example.customer_api.dto.CustomerResponseDTO;
+import com.example.customer_api.dto.CustomerUpdateDTO;
 import com.example.customer_api.service.CustomerService;
 
 import jakarta.validation.Valid;
@@ -88,5 +90,14 @@ public class CustomerRestController {
         List<CustomerResponseDTO> customers = customerService.getCustomersByStatus(status);
         return ResponseEntity.ok(customers);
     }
-    
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<CustomerResponseDTO> partialUpdateCustomer(
+            @PathVariable Long id,
+            @RequestBody CustomerUpdateDTO updateDTO) {
+        
+        CustomerResponseDTO updated = customerService.partialUpdateCustomer(id, updateDTO);
+        return ResponseEntity.ok(updated);
+    }
+
 }

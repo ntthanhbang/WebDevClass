@@ -1,17 +1,19 @@
 package com.example.customer_api.service;
 
-import com.example.customer_api.dto.CustomerRequestDTO;
-import com.example.customer_api.dto.CustomerResponseDTO;
-import com.example.customer_api.entity.Customer;
-import com.example.customer_api.exception.DuplicateResourceException;
-import com.example.customer_api.exception.ResourceNotFoundException;
-import com.example.customer_api.repository.CustomerRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.example.customer_api.dto.CustomerRequestDTO;
+import com.example.customer_api.dto.CustomerResponseDTO;
+import com.example.customer_api.dto.CustomerUpdateDTO;
+import com.example.customer_api.entity.Customer;
+import com.example.customer_api.exception.DuplicateResourceException;
+import com.example.customer_api.exception.ResourceNotFoundException;
+import com.example.customer_api.repository.CustomerRepository;
 
 @Service
 @Transactional
@@ -76,9 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setEmail(requestDTO.getEmail());
         existingCustomer.setPhone(requestDTO.getPhone());
         existingCustomer.setAddress(requestDTO.getAddress());
-        
-        // Don't update customerCode (immutable)
-        
+            
         Customer updatedCustomer = customerRepository.save(existingCustomer);
         return convertToResponseDTO(updatedCustomer);
     }
@@ -107,6 +107,28 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList());
     }
     
+    public CustomerResponseDTO partialUpdateCustomer(Long id, CustomerUpdateDTO updateDTO) {
+        Customer customer = customerRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
+        
+        // Only update non-null fields
+        if (updateDTO.getFullName() != null) {
+            customer.setFullName(updateDTO.getFullName());
+        }
+        if (updateDTO.getEmail() != null) {
+            customer.setEmail(updateDTO.getEmail());
+        }
+        
+        if (updateDTO.getPhone() != null) {
+            customer.setPhone(updateDTO.getPhone());
+        }
+        if (updateDTO.getAddress() != null) {
+            customer.setAddress(updateDTO.getAddress());
+        }
+        
+        return convertToResponseDTO(customerRepository.save(customer));
+    }
+
     // Helper Methods for DTO Conversion
     
     private CustomerResponseDTO convertToResponseDTO(Customer customer) {
